@@ -2,7 +2,7 @@ import sys
 sys.path.append('/home/ec2-user/voucr')
 
 from django.conf.urls import patterns, include, url
-import views
+import voucr.views
 
 urlpatterns = patterns('',
     # Examples:
@@ -11,5 +11,5 @@ urlpatterns = patterns('',
     
     url(r'^$', 'views.index'),
     url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login/template/login.html'}),
-    url(r'^signup/$', 'views.signup'),
+    url(r'^signup/$', 'voucr.views.signup'),
 )
