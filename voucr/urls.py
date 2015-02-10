@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/home/ec2-user/voucr')
+
 from django.conf.urls import patterns, include, url
 
 urlpatterns = patterns('',
