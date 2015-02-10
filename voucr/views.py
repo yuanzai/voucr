@@ -9,4 +9,4 @@ def signup(request):
                 pass
     else:
         form = UserCreationForm()
-        return render(request, 'operations/tester.html',{'form':form})
+        return render(request, 'template/signup.html',{'form':form})
