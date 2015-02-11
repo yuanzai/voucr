@@ -49,7 +49,9 @@ def signup(request):
                                 password=password)
             login(request, form)
             #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            return HttpResponseRedirect(reverse('index')) 
+            return HttpResponse('Sign Up Success')
+        else:
+            return HttpResponse('Sign Up Failed')
     else:
         form = UserCreationForm()
         return render(request, 'signup.html',{'form':form})
