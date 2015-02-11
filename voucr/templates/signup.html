@@ -2,7 +2,6 @@
 <p>Sign up failed.</p>
 {% endif %}
 
-{{ form.as_p }}
 
 <form method="post" action="{% url 'voucr.views.signup' %}">
 {% csrf_token %}
@@ -15,8 +14,12 @@
     <td>{{ form.password1.label_tag }}</td>
     <td>{{ form.password1 }}</td>
 </tr>
+<tr>
+    <td>{{ form.password2.label_tag }}</td>
+    <td>{{ form.password2 }}</td>
+</tr>
 </table>
 
-<input type="submit" value="login" />
+<input type="submit" value="Sign Up" />
 
 </form>
