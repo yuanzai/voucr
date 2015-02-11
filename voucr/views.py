@@ -12,11 +12,11 @@ def index(request):
     else:
     	return HttpResponse(request.user.Username)
 
-def logout(request):
+def logout_page(request):
     logout(request)
     return HttpResponse('Logged out')
 
-def login(request):
+def login_page(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -38,7 +38,7 @@ def login(request):
         return render(request, 'login.html',{'form':form})
 
 
-def signup(request):
+def signup_page(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
