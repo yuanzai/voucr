@@ -38,7 +38,7 @@ def login(request):
         return render(request, 'login.html',{'form':form})
 
 
-def signup(request):
+def signup(self, request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -49,9 +49,10 @@ def signup(request):
                                 password=password)
             login(request, form)
             #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            return HttpResponse('Sign Up Success')
-        else:
-            return HttpResponse('Sign Up Failed')
+            #return HttpResponse('Sign Up Success')
+        #else:
+            #return HttpResponse('Sign Up Failed')
+        return render(request, self.template_name, { 'form' : form })
     else:
         form = UserCreationForm()
         return render(request, 'signup.html',{'form':form})
