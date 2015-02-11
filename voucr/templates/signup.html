@@ -2,7 +2,7 @@
 <p>Sign up failed.</p>
 {% endif %}
 
-{{ form.as_table }}
+{{ form.as_p }}
 
 <form method="post" action="{% url 'voucr.views.signup' %}">
 {% csrf_token %}
