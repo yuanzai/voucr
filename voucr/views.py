@@ -1,13 +1,20 @@
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 
 import sys
 
 def index(request):
-    return HttpResponse("Index")
+    if not request.user.is_authenticated():
+        return HttpResponse('Error')
+    else:
+    	return HttpResponse(request.user.Username)
+
+def logout(request):
+    logout(request)
+    return HttpResponse('Logged out')
 
 def login(request):
     if request.method == 'POST':
