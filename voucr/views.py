@@ -27,6 +27,8 @@ def login(request):
             #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             return HttpResponseRedirect(reverse('index'))
     else:
+    	form = AuthenticationForm()
+        return render(request, 'login.html',{'form':form})
 
 
 def signup(request):
