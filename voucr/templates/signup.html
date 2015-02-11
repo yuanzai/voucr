@@ -1,8 +1,8 @@
 {% if form.errors %}
-<p>Your username and password didn't match. Please try again.</p>
+<p>Sign up failed.</p>
 {% endif %}
 
-
+{{ form }}
 
 <form method="post" action="{% url 'voucr.views.signup' %}">
 {% csrf_token %}
