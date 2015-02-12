@@ -37,7 +37,6 @@ def login_page(request):
     	form = AuthenticationForm()
         return render(request, 'login.html',{'form':form})
 
-
 def signup_page(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -56,3 +55,6 @@ def signup_page(request):
     else:
         form = UserCreationForm()
         return render(request, 'signup.html',{'form':form})
+
+def get_voucher(request, char_url)
+    pass
