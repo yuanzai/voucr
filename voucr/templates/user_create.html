@@ -1,0 +1,20 @@
+
+<form method="post" action="{% url 'voucr.views.user_create' %}">
+{% csrf_token %}
+<table>
+<tr>
+    <td>{{ form.desc.label_tag }}</td>
+    <td>{{ form.desc }} {{ form.desc.errors }}</td>
+</tr>
+
+    
+<tr>
+    <td>{{ form.desc_url.label_tag }}</td>
+    <td>{{ form.desc_url }} {{ form.desc_url.errors }}</td>
+</tr>
+
+</table>
+
+<input type="submit" value="Create!" />
+
+</form>
