@@ -10,7 +10,7 @@ def index(request):
     if not request.user.is_authenticated():
         return HttpResponse('Error')
     else:
-    	return HttpResponse(request.user.Username)
+    	return HttpResponse(request.user.username)
 
 def logout_page(request):
     logout(request)
