@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 from django.forms import ModelForm
 
 class UserInfo(models.Model):
-    user = models.OneToOneField(User, primary_key=true)
+    user = models.OneToOneField(User, primary_key=True)
     longname = models.CharField(max_length=255)
-    username_url = models.CharField(max_length=20, db_index=true)
+    username_url = models.CharField(max_length=20, db_index=True)
 
 class UserInfoForm(ModelForm):
     class meta:
@@ -26,9 +26,9 @@ class CampaignForm(ModelForm):
 
 class Voucher(models.Model):
     campaign = models.ForeignKey(Campaign)
-    char_url = models.CharField(max_length=20, db_index=true)
-    word_url = models.CharField(max_length=20, db_index=true)
-    date_url = models.CharField(max_length=7, db_index=true)
+    char_url = models.CharField(max_length=20, db_index=True)
+    word_url = models.CharField(max_length=20, db_index=True)
+    date_url = models.CharField(max_length=7, db_index=True)
     expire_date = models.DateField()
     
 class VoucherForm(ModelForm):
