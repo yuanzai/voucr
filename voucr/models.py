@@ -12,11 +12,11 @@ class UserInfoForm(ModelForm):
         model = UserInfo
         field = ['longname','urlshortname']
 
-class Campaign(models.Model)
+class Campaign(models.Model):
     user = models.ForeignKey(UserInfo)
     desc_url = models.CharField(max_length=40)
     desc = models.CharField(max_length=255)
-    count = modedls.PositiveIntegerField()
+    count = models.PositiveIntegerField()
 
 class CampaignForm(ModelForm):
     class meta:
@@ -24,7 +24,7 @@ class CampaignForm(ModelForm):
         field = ['desc_url','desc', 'count']
         
 
-class Voucher(models.Model)
+class Voucher(models.Model):
     campaign = models.ForeignKey(Campaign)
     char_url = models.CharField(max_length=20, db_index=true)
     word_url = models.CharField(max_length=20, db_index=true)
