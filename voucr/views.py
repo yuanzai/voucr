@@ -57,4 +57,4 @@ def signup_page(request):
         return render(request, 'signup.html',{'form':form})
 
 def get_voucher(request, char_url):
-    pass
+    return HttpResponse('voucher')
