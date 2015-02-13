@@ -56,5 +56,5 @@ def signup_page(request):
         form = UserCreationForm()
         return render(request, 'signup.html',{'form':form})
 
-def get_voucher(request, char_url)
+def get_voucher(request, char_url):
     pass
