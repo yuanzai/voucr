@@ -3,13 +3,14 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-
+from models import 
 import sys
 
 def index(request):
     if not request.user.is_authenticated():
         return HttpResponse('Error')
     else:
+
     	return HttpResponse(request.user.username)
 
 def logout_page(request):
@@ -57,4 +58,10 @@ def signup_page(request):
         return render(request, 'signup.html',{'form':form})
 
 def get_voucher(request, char_url):
+    return HttpResponse('voucher')
+
+def user_create(request):
+    return HttpResponse('voucher')
+
+def user_home(request):
     return HttpResponse('voucher')
