@@ -10,7 +10,7 @@ class UserInfo(models.Model):
 class UserInfoForm(ModelForm):
     class meta:
         model = UserInfo
-        field = ['longname','urlshortname']
+        field = ['longname','username_url']
 
 class Campaign(models.Model):
     user = models.ForeignKey(UserInfo)
