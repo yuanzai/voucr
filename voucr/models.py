@@ -8,7 +8,7 @@ class UserInfo(models.Model):
     username_url = models.CharField(max_length=20, db_index=True)
 
 class UserInfoForm(ModelForm):
-    class meta:
+    class Meta:
         model = UserInfo
         field = ['longname','username_url']
 
