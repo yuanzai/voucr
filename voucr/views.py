@@ -10,7 +10,9 @@ def index(request):
     if not request.user.is_authenticated():
         return HttpResponse('Error')
     else:
-	if not UserInfo.objects.get(user=request.user):
+    	try:
+    	    UserInfo.objects.get(user=request.user):
+	except:
 	    return HttpResponse('no user info')
 	else:
 	    return HttpResponse('has user info')
