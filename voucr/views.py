@@ -13,9 +13,9 @@ def index(request):
     	try:
     	    info = UserInfo.objects.get(user=request.user)
 	except:
-	    return HttpResponse('no user info')
+	    return HttpResponse('no user info - ' + request.user.username)
 	else:
-	    return HttpResponse('has user info')
+	    return HttpResponse('has user info - ' + request.user.username)
     	
 def logout_page(request):
     logout(request)
@@ -67,13 +67,19 @@ def get_voucher(request, char_url):
 def user_create(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('index'))
-    else:
-	if not UserInfo.objects.all.get(user=request.user):
-	    return HttpResponse('no user info')
-	else:
-	    return HttpResponse('has user info')
+    
+    if request.method == 'POST':
+        form = UserInfoForm(request.POST)
+        if form.is_valid():
+            newform = form.save(commit=False)
+            newform.user = request.user
+            newform.save()
     	
-    return HttpResponse('voucher')
+	    return HttpResponse('user info saved')
+	return render(request, 'user_create.html',{'form':form})
+    else:
+        form = UserInfoForm()
+        return render(request, 'user_create.html',{'form':form})
 
 def user_home(request):
     return HttpResponse('voucher')
