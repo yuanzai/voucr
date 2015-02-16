@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from models import 
+from models import UserInfo, UserInfoForm
 import sys
 
 def index(request):
@@ -61,6 +61,14 @@ def get_voucher(request, char_url):
     return HttpResponse('voucher')
 
 def user_create(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('index'))
+    else:
+	if not UserInfo.objects.all.get(user=request.user):
+	    return HttpResponse('no user info')
+	else:
+	    return HttpResponse('has user info')
+    	
     return HttpResponse('voucher')
 
 def user_home(request):
