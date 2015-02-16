@@ -10,10 +10,10 @@ def index(request):
     if not request.user.is_authenticated():
         return HttpResponse('Error')
     else:
-	if UserInfo.objects.get(user=request.user):
-	    return HttpResponse('has user info')
-	else:
+	if not UserInfo.objects.get(user=request.user):
 	    return HttpResponse('no user info')
+	else:
+	    return HttpResponse('has user info')
     	
 def logout_page(request):
     logout(request)
