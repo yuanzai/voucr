@@ -11,7 +11,7 @@ def index(request):
         return HttpResponse('Error')
     else:
     	try:
-    	    UserInfo.objects.get(user=request.user):
+    	    info = UserInfo.objects.get(user=request.user)
 	except:
 	    return HttpResponse('no user info')
 	else:
