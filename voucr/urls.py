@@ -13,6 +13,6 @@ urlpatterns = patterns('',
     url(r'^signup/$', signup_page),
     url(r'^signup$', signup_page),
     url(r'^(?P<char_url>\s+)$', get_voucher),
-    url(r'^(?P<username_url>\s+)$', user_home),
+    url(r'^user_create/$', user_home),
     url(r'^(?P<username_url>\s+)/create$', user_create),
 )
