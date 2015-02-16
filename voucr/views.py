@@ -76,6 +76,7 @@ def user_create(request):
             newform.save()
     	
 	    return HttpResponse('user info saved')
+	return HttpResponse('user info not saved')
 	return render(request, 'user_create.html',{'form':form})
     else:
         form = UserInfoForm()
