@@ -71,7 +71,6 @@ def user_create(request):
     
     if request.method == 'POST':
         form = UserInfoForm(request.POST)
-        form.user = request.user
         if form.is_valid():
             newform = form.save(commit=False)
             newform.user = request.user
