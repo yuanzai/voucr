@@ -18,6 +18,7 @@ class Campaign(models.Model):
     desc_url = models.CharField(max_length=40)
     desc = models.CharField(max_length=255)
     count = models.PositiveIntegerField()
+    expire_date = models.DateField()
 
 class CampaignForm(ModelForm):
     class Meta:
