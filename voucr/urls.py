@@ -2,7 +2,7 @@ import sys
 #sys.path.append('/home/ec2-user/voucr')
 
 from django.conf.urls import patterns, include, url
-from voucr.views import create_campaign, user_home, user_create, signup_page, login_page, index, logout_page, get_voucher
+from voucr.views import campaign_create, user_home, user_create, signup_page, login_page, index, logout_page, get_voucher
 #import voucr.views
 
 urlpatterns = patterns('',
@@ -12,9 +12,10 @@ urlpatterns = patterns('',
     url(r'^logout$', logout_page),
     url(r'^signup/$', signup_page),
     url(r'^signup$', signup_page),
-    url(r'^(?P<char_url>\s+)$', get_voucher),
+    
     url(r'^user_create/$', user_create),
-
+    url(r'^campaign_create$', campaign_create),
+    
     url(r'^(?P<username_url>\s+)/$', user_home),
-    url(r'^(?P<username_url>\s+)/create$', create_campaign),
+    url(r'^(?P<char_url>\s+)$', get_voucher),
 )
