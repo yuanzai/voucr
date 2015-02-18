@@ -83,7 +83,7 @@ def user_create(request):
         form = UserInfoForm()
         return render(request, 'user_create.html',{'form':form})
 
-def create_campaign(request): 
+def campaign_create(request): 
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('index'))
     if request.method == 'POST':
