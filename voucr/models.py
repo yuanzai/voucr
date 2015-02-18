@@ -11,6 +11,7 @@ class UserInfoForm(ModelForm):
     class Meta:
         model = UserInfo
         field = ['longname','username_url']
+        exclude = ('user',)
 
 class Campaign(models.Model):
     user = models.ForeignKey(UserInfo)
@@ -19,10 +20,10 @@ class Campaign(models.Model):
     count = models.PositiveIntegerField()
 
 class CampaignForm(ModelForm):
-    class meta:
+    class Meta:
         model = Campaign
         field = ['desc_url','desc', 'count']
-        
+        exclude = ('user',)        
 
 class Voucher(models.Model):
     campaign = models.ForeignKey(Campaign)
@@ -32,7 +33,7 @@ class Voucher(models.Model):
     expire_date = models.DateField()
     
 class VoucherForm(ModelForm):
-    class meta:
+    class Meta:
         model = Voucher
         field = ['char_url','word_url','expire_date']    
     

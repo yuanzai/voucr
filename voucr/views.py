@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse, Http404
-from models import UserInfo, UserInfoForm
+from models import UserInfo, UserInfoForm, Campaign, CampaignForm
 import sys
 
 def index(request):
@@ -65,22 +65,39 @@ def get_voucher(request, char_url):
     return HttpResponse('voucher')
 
 def user_create(request):
+
     if not request.user.is_authenticated():
         return HttpResponseRedirect(reverse('index'))
     
     if request.method == 'POST':
         form = UserInfoForm(request.POST)
+        form.user = request.user
         if form.is_valid():
             newform = form.save(commit=False)
             newform.user = request.user
             newform.save()
     	
 	    return HttpResponse('user info saved')
-	return HttpResponse('user info not saved')
+	#return HttpResponse('user info not saved')
 	return render(request, 'user_create.html',{'form':form})
     else:
         form = UserInfoForm()
         return render(request, 'user_create.html',{'form':form})
+
+def create_campaign(request): 
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('index'))
+    if request.method == 'POST':
+        form = CampaignForm(request.POST)
+        if form.is_valid():
+            newform = form.save(commit=True)
+            newform.user = request.user
+            newform.save()
+            return HttpResponse('campaign saved')
+        
+
+
+
 
 def user_home(request):
     return HttpResponse('voucher')
