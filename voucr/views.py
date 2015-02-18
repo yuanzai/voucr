@@ -94,10 +94,10 @@ def create_campaign(request):
             newform.user = request.user
             newform.save()
             return HttpResponse('campaign saved')
-        
-
-
-
+        return render(request, 'campaign_create.html',{'form':form})
+    else:
+        form = CampaignForm()
+        return render(request, 'campaign_create.html',{'form':form})
 
 def user_home(request):
     return HttpResponse('voucher')
