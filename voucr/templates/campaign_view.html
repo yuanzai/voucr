@@ -1,0 +1,21 @@
+<h1>View Campaign</h1>
+<a href="{% url 'voucr.views.campaign_home' %}">back</a><p>
+Description: {{ c.desc }}<br>
+URL Desc: {{ c.desc_url }}<br>
+Count: {{ c.count }}<p>
+
+<table>
+<tr>
+	<th>id</th>
+	<th>char_url</th>
+	<th>claimed?</th>
+</tr>
+{% for voucher in v %}
+<tr>
+	<td>{{ voucher.id }}</td>
+	<td>{{ voucher.char_url }}</td>
+	<td>{{ voucher.is_claimed }}</td>
+</tr>
+{% endfor %}
+</table>
+

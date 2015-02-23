@@ -1,0 +1,12 @@
+<H1>Voucher!</H1>
+
+campaign desc: {{ c.desc }}<br>
+campaign short desc {{ c.desc_url }}<br>
+user name: {{ u.longname }}<p>
+
+
+<form method="post" action="{% url 'voucr.views.voucher_claim' %}">
+{% csrf_token %}
+<input type="hidden" name="char_url" value="{{ v.char_url }}"/>
+<input type="submit" value="Claim!" />
+</form>

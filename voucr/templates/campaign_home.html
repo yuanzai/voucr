@@ -1,0 +1,25 @@
+
+<head>
+<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet" type="text/css">
+</head>
+{% include 'navbar_user.html' %}
+<div class="container">
+
+<H1>{{ u.longname }} Campaigns</H1>
+<a href="{% url 'voucr.views.campaign_create' %}">Create Campaign</a><p>
+
+<table>
+<tr>
+	<th>Description</th>
+	<th>URL Desc</th>
+	<th>Count</th>
+</tr>
+{% for campaign in c %}
+<tr>
+	<td><a href="{% url 'voucr.views.campaign_view' campaign.id %}" >{{ campaign.desc }}</a></td>
+	<td>{{ campaign.desc_url }}</td>
+	<td>{{ campaign.count }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>

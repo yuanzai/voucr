@@ -1,11 +1,5 @@
+<H1>New Campaign</h1>
 
-class Campaign(models.Model):
-    user = models.ForeignKey(UserInfo)
-    desc_url = models.CharField(max_length=40)
-    desc = models.CharField(max_length=255)
-    count = models.PositiveIntegerField()
-    expire_date = models.DateField()
-    
 <form method="post" action="{% url 'voucr.views.campaign_create' %}">
 {% csrf_token %}
 <table>
