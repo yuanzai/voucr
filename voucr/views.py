@@ -108,7 +108,7 @@ def voucher_claim(request):
 
 def user_create(request):
     if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('voucr.views.index'))
     if request.method == 'POST':
         form = UserInfoForm(request.POST)
         if form.is_valid():
@@ -123,7 +123,7 @@ def user_create(request):
 
 def campaign_home(request):
     if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('voucr.views.index'))
     if not check_user_info(request.user):
 	    return HttpResponseRedirect(reverse('voucr.views.user_create'))
     c = Campaign.objects.filter(user=request.user)
@@ -141,7 +141,7 @@ def campaign_view(request, campaign_id):
 
 def campaign_create(request): 
     if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('index'))
+        return HttpResponseRedirect(reverse('voucr.views.index'))
     if request.method == 'POST':
         form = CampaignForm(request.POST)
         if form.is_valid():
