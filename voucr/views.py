@@ -105,10 +105,10 @@ def voucher_claim(request):
         return render(request, 'voucher_claim.html', {'c': c, 'u' : u})
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
-
+@login_required
 def user_create(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('voucr.views.index'))
+    #if not request.user.is_authenticated():
+        #return HttpResponseRedirect(reverse('voucr.views.index'))
     if request.method == 'POST':
         form = UserInfoForm(request.POST)
         if form.is_valid():
