@@ -1,6 +1,6 @@
 <h1>LANDING PAGE</h1>
 <a href="{% url 'voucr.views.signup_page' %}">Sign Up!</a><br>
-<a href="{% url 'voucr.views.login_page' %}">Login</a><br>
+<a href="{% url 'auth_views.login,' %}">Login</a><br>
 
 {% if user.is_authenticated %}
 Welcome, {{ user.username }}!
