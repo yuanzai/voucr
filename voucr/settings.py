@@ -90,3 +90,5 @@ STATIC_URL = '/static/'
 
 # Login URL
 LOGIN_URL = '/'
+
+LOGIN_REDIRECT_URL = '/'
