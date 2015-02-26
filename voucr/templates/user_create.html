@@ -9,20 +9,8 @@
 <form method="post" action="{% url 'voucr.views.user_create' %}">
 {% csrf_token %}
 
-{{ form.as_p }} 
-<table>
-<tr>
-    <td>{{ form.longname.label_tag }}</td>
-    <td>{{ form.longname }} {{ form.longname.errors }}</td>
-</tr>
+{{ form.as_table }} 
 
-    
-<tr>
-    <td>{{ form.username_url.label_tag }}</td>
-    <td>{{ form.username_url }} {{ form.username_url.errors }}</td>
-</tr>
-
-</table>
 
 <input type="submit" value="Create!" />
 
