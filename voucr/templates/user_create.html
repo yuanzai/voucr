@@ -1,4 +1,9 @@
 <h1>Please update your company information</h1>
+
+{% if form.errors %}
+<p>Update unsuccessful</p>
+{% endif %}
+
 <form method="post" action="{% url 'voucr.views.user_create' %}">
 {% csrf_token %}
 <table>
