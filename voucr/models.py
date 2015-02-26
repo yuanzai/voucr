@@ -6,7 +6,7 @@ class UserInfo(models.Model):
     user = models.OneToOneField(User, primary_key=True)
     longname = models.CharField(max_length=255)
     username_url = models.CharField(max_length=20, db_index=True)
-    address1 = models.CharField(max_length=255)
+    address1 = models.CharField(max_length=255, default='')
     address2 = models.CharField(max_length=255, null=True)
     city = models.CharField(max_length=255)
     country = models.CharField(max_length=50)
