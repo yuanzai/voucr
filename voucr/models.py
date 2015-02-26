@@ -8,9 +8,9 @@ class UserInfo(models.Model):
     username_url = models.CharField(max_length=20, db_index=True)
     address1 = models.CharField(max_length=255, default='')
     address2 = models.CharField(max_length=255, null=True)
-    city = models.CharField(max_length=255)
-    country = models.CharField(max_length=50)
-    zipcode = models.CharField(max_length=20)
+    city = models.CharField(max_length=255, default='')
+    country = models.CharField(max_length=50, default='')
+    zipcode = models.CharField(max_length=20, default='')
 
 class UserInfoForm(ModelForm):
     class Meta:
