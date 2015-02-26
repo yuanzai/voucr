@@ -120,7 +120,10 @@ def user_create(request):
     	    return HttpResponse('user info saved')
         return render(request, 'user_create.html',{'form':form})
     else:
-        form = UserInfoForm(user=request.user)
+    	form = UserInfoForm()
+    	item = UserInfo.objects.filter(user=request.user)
+    	if item.count() == 1:
+    	    form = UserInfoForm(instance=item[0])
         return render(request, 'user_create.html',{'form':form})
 
 def campaign_home(request):
