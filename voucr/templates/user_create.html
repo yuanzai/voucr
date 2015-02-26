@@ -1,6 +1,7 @@
 <h1>Please update your company information</h1>
 
 {% if form.errors %}
+{{ form.non_field_errors }}
 <p>Update unsuccessful</p>
 {% endif %}
 
