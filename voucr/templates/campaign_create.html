@@ -2,28 +2,8 @@
 
 <form method="post" action="{% url 'voucr.views.campaign_create' %}">
 {% csrf_token %}
-<table>
 
-<tr>
-    <td>{{ form.desc.label_tag }}</td>
-    <td>{{ form.desc }} {{ form.desc.errors }}</td>
-</tr>
-
-<tr>
-    <td>{{ form.desc_url.label_tag }}</td>
-    <td>{{ form.desc_url }} {{ form.desc_url.errors }}</td>
-</tr>
-
-<tr>
-    <td>{{ form.count.label_tag }}</td>
-    <td>{{ form.count }} {{ form.count.errors }}</td>
-</tr>   
-
-<tr>
-    <td>{{ form.expire_date.label_tag }}</td>
-    <td>{{ form.expire_date }} {{ form.expire_date.errors }}</td>
-</tr>   
-</table>
+{{ form.as_p }}
 
 <input type="submit" value="Create!" />
 
