@@ -43,7 +43,8 @@ def login_page(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                return login(request, user)
+                login(request, user)
+                return HttpResponse('Login OK')
                 return HttpResponseRedirect(reverse('voucr.views.index'))
             else:
             	# Return a 'disabled account' error message
