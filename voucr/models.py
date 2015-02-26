@@ -15,7 +15,7 @@ class UserInfo(models.Model):
 class UserInfoForm(ModelForm):
     class Meta:
         model = UserInfo
-        field = ['longname','username_url']
+        field = ['longname','username_url','address1','address2','city','country','zipcode']
         exclude = ('user',)
 
 class Campaign(models.Model):
