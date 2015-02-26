@@ -44,7 +44,7 @@ def login_page(request):
         if user is not None:
             if user.is_active:
                 return login(request, user)
-                #return HttpResponseRedirect(reverse('voucr.views.index'))
+                return HttpResponseRedirect(reverse('voucr.views.index'))
             else:
             	# Return a 'disabled account' error message
                 return HttpResponse('Account disabled, please contact us.')
@@ -52,7 +52,7 @@ def login_page(request):
             # Return an 'invalid login' error message.
 
             #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            return HttpResponseRedirect(reverse('voucr.views.index'))
+            return render(request, 'login.html',{'form':form})
     else:
     	form = AuthenticationForm()
         return render(request, 'login.html',{'form':form})
