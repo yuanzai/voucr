@@ -10,7 +10,7 @@ import voucr.views
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', index),
-    url(r'^login?//$', login_page),
+    url(r'^login?\/$', login_page),
     url(r'^logout$', logout_page),
     #url(r'^login?//$', auth_views.login, {'template_name': 'login.html'},name='login'),
     #url(r'^login/$', auth_views.login, {'template_name': 'login.html'},name='login'),
