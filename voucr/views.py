@@ -120,7 +120,7 @@ def user_create(request):
     	    return HttpResponse('user info saved')
         return render(request, 'user_create.html',{'form':form})
     else:
-        form = UserInfoForm()
+        form = UserInfoForm(user=request.user)
         return render(request, 'user_create.html',{'form':form})
 
 def campaign_home(request):
