@@ -9,7 +9,7 @@
 <form method="post" action="{% url 'voucr.views.user_create' %}">
 {% csrf_token %}
 
-{% form.as_p %} 
+{{ form.as_p }} 
 <table>
 <tr>
     <td>{{ form.longname.label_tag }}</td>
