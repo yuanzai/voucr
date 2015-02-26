@@ -37,7 +37,7 @@ class Campaign(models.Model):
 class CampaignForm(ModelForm):
     class Meta:
         model = Campaign
-        field = ['desc_url','desc', 'count','expire_date']
+        field = ['desc_url','desc', 'count','expire_date','img_path','offer_type']
         exclude = ('user',)        
 
 class Voucher(models.Model):
