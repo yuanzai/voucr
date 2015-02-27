@@ -4,12 +4,15 @@ Description: {{ c.desc }}<br>
 URL Desc: {{ c.desc_url }}<br>
 Count: {{ c.count }}<p>
 
-<table>
+<table class="table" >
+<thead>
 <tr>
 	<th>id</th>
 	<th>char_url</th>
 	<th>claimed?</th>
 </tr>
+</thead>
+<tbody>
 {% for voucher in v %}
 <tr>
 	<td>{{ voucher.id }}</td>
@@ -17,5 +20,6 @@ Count: {{ c.count }}<p>
 	<td>{{ voucher.is_claimed }}</td>
 </tr>
 {% endfor %}
+</tbody>
 </table>
 
