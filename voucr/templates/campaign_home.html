@@ -8,12 +8,15 @@
 <H1>{{ u.longname }} Campaigns</H1>
 <a href="{% url 'voucr.views.campaign_create' %}">Create Campaign</a><p>
 
-<table>
+<table class="table" >
+<thead>
 <tr>
 	<th>Description</th>
 	<th>URL Desc</th>
 	<th>Count</th>
 </tr>
+</thead>
+<tbody>
 {% for campaign in c %}
 <tr>
 	<td><a href="{% url 'voucr.views.campaign_view' campaign.id %}" >{{ campaign.desc }}</a></td>
@@ -21,5 +24,6 @@
 	<td>{{ campaign.count }}</td>
 </tr>
 {% endfor %}
+</tbody>
 </table>
 </div>
