@@ -1,10 +1,12 @@
-<H1>New Campaign</h1>
+{% extends "base.html" %}
 
+{% block content %}
+
+<H1>New Campaign</h1>
 <form method="post" action="{% url 'voucr.views.campaign_create' %}">
 {% csrf_token %}
-
 {{ form.as_p }}
-
 <input type="submit" value="Create!" />
-
 </form>
+
+{% endblock %}
