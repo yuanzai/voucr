@@ -39,8 +39,12 @@ class UserInfo(models.Model):
 class UserInfoForm(ModelForm):
     class Meta:
         model = UserInfo
-        field = ['longname','username_url']
+        field = ['company_name','username_url']
         exclude = ('user',)
+    def __init__(self, *args, **kwargs):
+        super(UserInfoForm, self).__init__(*args, **kwargs)
+        for key, f in self.fields.iteritems():
+            f.widget.attrs.update({'class':'form-control'})
 
 class Campaign(models.Model):
     offer_choices = (

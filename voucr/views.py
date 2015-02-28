@@ -44,7 +44,6 @@ def login_page(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponse('Login OK')
                 return HttpResponseRedirect(reverse('voucr.views.index'))
             else:
             	# Return a 'disabled account' error message
@@ -122,9 +121,11 @@ def user_create(request):
     else:
     	form = UserInfoForm()
     	item = UserInfo.objects.filter(user=request.user)
-    	if item.count() == 1:
+    	newuser = True
+        if item.count() == 1:
     	    form = UserInfoForm(instance=item[0])
-        return render(request, 'user_create.html',{'form':form})
+            newuser = False
+        return render(request, 'user_create.html',{'form':form, 'newuser' : newuser})
 
 def campaign_home(request):
     if not request.user.is_authenticated():

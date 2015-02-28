@@ -3,8 +3,8 @@
 {% block content %}
 <h1>Account</h1>
 
-{% if form.longname = '' %}
-<h3>Now that you've signed up, let </h3>
+{% if newuser %}
+<h4>Now that you've signed up, let get started!</h4>
 {% endif %}
 
 <form method="post" action="{% url 'voucr.views.user_create' %}">
@@ -15,7 +15,7 @@
 </div>
 {% endfor %}
 
-    <button type="submit" value="login" class="btn btn-default">Sign Up</button>
+    <button type="submit" value="login" class="btn btn-default">Update</button>
 </form>
 
 {% endblock %}

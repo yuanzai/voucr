@@ -4,14 +4,17 @@
 {% block content %}
 
 <H1>{{ u.longname }} Campaigns</H1>
-<a href="{% url 'voucr.views.campaign_create' %}">Create Campaign</a><p>
+<a href="{% url 'voucr.views.campaign_create' %}"><button type="button" class="btn btn-primary">New Campaign</button></a><p>
 
 <table class="table" >
 <thead>
 <tr>
 	<th>Description</th>
 	<th>URL Desc</th>
-	<th>Count</th>
+    <th>Offer Type</th>
+	<th>Active</th>
+    <th>Claimed</th>
+    <th>Expiry</th>
 </tr>
 </thead>
 <tbody>
@@ -19,7 +22,10 @@
 <tr>
 	<td><a href="{% url 'voucr.views.campaign_view' campaign.id %}" >{{ campaign.desc }}</a></td>
 	<td>{{ campaign.desc_url }}</td>
-	<td>{{ campaign.count }}</td>
+    <td>{{ campaign.offer_type }}</td>
+    <td>{{ campaign.count }}</td>
+    <td>tba</td>
+    <td>{{ campaign.expiry_date }}</td>
 </tr>
 {% endfor %}
 </tbody>
