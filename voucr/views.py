@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
@@ -8,7 +8,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 
 
-from models import UserInfo, UserInfoForm, Campaign, CampaignForm, Voucher
+from models import UserCreateForm, UserInfo, UserInfoForm, Campaign, CampaignForm, Voucher
 import sys
 from link_gen import link_generator
 from datetime import datetime
@@ -55,12 +55,15 @@ def login_page(request):
             #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
             return render(request, 'login.html',{'form':form})
     else:
+        
     	form = AuthenticationForm()
+        form.fields['username'].widget.attrs.update({'class':'form-control'})
+        form.fields['password'].widget.attrs.update({'class':'form-control'})
         return render(request, 'login.html',{'form':form})
 
 def signup_page(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserCreateForm(request.POST)
         if form.is_valid():
             username = form.clean_username()
             password = form.clean_password2()
@@ -68,13 +71,10 @@ def signup_page(request):
             form = authenticate(username=username,
                                 password=password)
             login(request, form)
-            #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
-            return HttpResponse('Sign Up Success')
-        #else:
-            #return HttpResponse('Sign Up Failed')
+            return HttpResponseRedirect(reverse('voucr.views.user_create'))
         return render(request, 'signup.html',{'form':form})
     else:
-        form = UserCreationForm()
+        form = UserCreateForm()
         return render(request, 'signup.html',{'form':form})
 
 def get_voucher(request, char_url):

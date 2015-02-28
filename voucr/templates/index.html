@@ -1,9 +1,15 @@
-<h1>LANDING PAGE</h1>
-<a href="{% url 'voucr.views.signup_page' %}">Sign Up!</a><br>
-<a href="{% url 'login' %}">Login</a><br>
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Hello. Start your voucr campaign today</h1>
 
 {% if user.is_authenticated %}
 Welcome, {{ user.username }}!
 {% else %}
-Hello
+VOU.CR is fuss free online voucher service that does not require customers to download apps or login in to sites.<br>
+Even better, your customers can refer their friends offers that you have. <br>
+Lets get started.<br><br>
+<p><a href="{% url 'voucr.views.signup_page' %}">Sign up</a> | <a href="{% url 'voucr.views.login_page' %}">Login</a></p>
 {% endif %}
+
+{% endblock %}

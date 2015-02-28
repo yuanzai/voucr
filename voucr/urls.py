@@ -9,14 +9,14 @@ import voucr.views
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', voucr.views.index),
-    url(r'^login?\/$', voucr.views.login_page),
-    url(r'^logout?\/$', voucr.views.logout_page),
+    url(r'^login\/?$', voucr.views.login_page),
+    url(r'^logout\/?$', voucr.views.logout_page),
 
-    url(r'^signup?\/$', voucr.views.signup_page),
+    url(r'^signup\/?$', voucr.views.signup_page),
     
-    url(r'^user_create?\/$', voucr.views.user_create),
-    url(r'^campaign_create?\/$', voucr.views.campaign_create),
-    url(r'^campaign?\/$', voucr.views.campaign_home),
+    url(r'^user_create\/?$', voucr.views.user_create),
+    url(r'^campaign_create\/?$', voucr.views.campaign_create),
+    url(r'^campaign\/?$', voucr.views.campaign_home),
     
     url(r'^campaign/(?P<campaign_id>\d+)$', voucr.views.campaign_view),
     #url(r'^(?P<username_url>\s+)/$', user_home),

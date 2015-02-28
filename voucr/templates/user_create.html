@@ -1,22 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h1>Account</h1>
 
-<h1>Please update your company information</h1>
-
-{% if form.errors %}
-{{ form.non_field_errors }}
-<p>Update unsuccessful</p>
-
+{% if form.longname = '' %}
+<h3>Now that you've signed up, let </h3>
 {% endif %}
 
 <form method="post" action="{% url 'voucr.views.user_create' %}">
-{% csrf_token %}
 
-{{ form.as_p }} 
+{% for f in form %}
+<div class="form-group">
+        <label>{{ f.label_tag }} {{f.errors}}</label>{{ f }}
+</div>
+{% endfor %}
 
-<input type="submit" value="Create!" />
-
+    <button type="submit" value="login" class="btn btn-default">Sign Up</button>
 </form>
 
 {% endblock %}
