@@ -49,6 +49,8 @@ def login_page(request):
             login(request, user)
             return HttpResponse("OK")
             return HttpResponseRedirect(reverse('voucr.views.index'))
+        else:
+            return HttpResponse("not OK")
             #return render(request, 'login.html',{'form':form})
         """
         if user is not None:
