@@ -38,9 +38,15 @@ def logout_page(request):
 
 def login_page(request):
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
+    	form = AuthenticationForm(request.POST)
+        #username = request.POST['username']
+        #password = request.POST['password']
+        #user = authenticate(username=username, password=password)
+        if form.clean():
+            login(request, user)
+            return HttpResponseRedirect(reverse('voucr.views.index'))
+            #return render(request, 'login.html',{'form':form})
+        """
         if user is not None:
             if user.is_active:
                 login(request, user)
@@ -49,16 +55,17 @@ def login_page(request):
             	# Return a 'disabled account' error message
                 return HttpResponse('Account disabled, please contact us.')
         else:
-            form = AuthenticationForm(request.POST)
+            
             form.fields['username'].widget.attrs.update({'class':'form-control'})
             form.fields['password'].widget.attrs.update({'class':'form-control'})
             return render(request, 'login.html',{'form':form})
+        """
     else:
+        form = AuthenticationForm()
         
-    	form = AuthenticationForm()
-        form.fields['username'].widget.attrs.update({'class':'form-control'})
-        form.fields['password'].widget.attrs.update({'class':'form-control'})
-        return render(request, 'login.html',{'form':form})
+    form.fields['username'].widget.attrs.update({'class':'form-control'})
+    form.fields['password'].widget.attrs.update({'class':'form-control'})
+    return render(request, 'login.html',{'form':form})
 
 def signup_page(request):
     if request.method == 'POST':
