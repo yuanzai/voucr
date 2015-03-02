@@ -43,7 +43,11 @@ def login_page(request):
         #password = request.POST['password']
         #user = authenticate(username=username, password=password)
         if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
             login(request, user)
+            return HttpResponse("OK")
             return HttpResponseRedirect(reverse('voucr.views.index'))
             #return render(request, 'login.html',{'form':form})
         """
