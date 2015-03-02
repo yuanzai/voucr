@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     url(r'^campaign\/?$', voucr.views.campaign_home),
     
     url(r'^campaign/(?P<campaign_id>\d+)$', voucr.views.campaign_view),
+    url(r'^campaign/(?P<campaign_id>\d+/voucher)$', voucr.views.get_voucher_sample),
     #url(r'^(?P<username_url>\s+)/$', user_home),
     
     #**** Voucher ****

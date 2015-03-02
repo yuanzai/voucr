@@ -5,6 +5,8 @@ from django.forms import ModelForm
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
+import pytz
+from timezone_field import TimeZoneField
 
 class UserCreateForm(UserCreationForm):
     email = forms.EmailField(required=True)
@@ -35,6 +37,8 @@ class UserInfo(models.Model):
     address_1 = models.CharField(max_length=255, default='')
     address_2 = models.CharField(max_length=255, null=True)
     city = models.CharField(max_length=255, default='')
+    timezone = TimeZoneField(default='')
+
 
 class UserInfoForm(ModelForm):
     class Meta:

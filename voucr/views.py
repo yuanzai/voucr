@@ -38,36 +38,11 @@ def logout_page(request):
 
 def login_page(request):
     if request.method == 'POST':
-    	form = AuthenticationForm(request.POST)
-        #username = request.POST['username']
-        #password = request.POST['password']
-        #user = authenticate(username=username, password=password)
+    	form = AuthenticationForm(data=request.POST)
         if form.is_valid():
             if form.clean():
-                #username = request.POST['username']
-                #password = request.POST['password']
-                #user = authenticate(username=username, password=password)
                 login(request, form.get_user())
-                return HttpResponse("OK")
                 return HttpResponseRedirect(reverse('voucr.views.index'))
-            return HttpResponse("not CLEAN")
-        else:
-            return HttpResponse("not VALID")
-            #return render(request, 'login.html',{'form':form})
-        """
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect(reverse('voucr.views.index'))
-            else:
-            	# Return a 'disabled account' error message
-                return HttpResponse('Account disabled, please contact us.')
-        else:
-            
-            form.fields['username'].widget.attrs.update({'class':'form-control'})
-            form.fields['password'].widget.attrs.update({'class':'form-control'})
-            return render(request, 'login.html',{'form':form})
-        """
     else:
         form = AuthenticationForm()
         
@@ -94,7 +69,7 @@ def signup_page(request):
 def get_voucher(request, char_url):
     v = Voucher.objects.filter(char_url=char_url).filter(is_claimed=False)
     if v.count() != 1:
-        raise Http404("Poll does not exist")
+        raise Http404("Voucher does not exist")
     else:
         v = v[0]
         c = v.campaign
@@ -109,6 +84,8 @@ def get_voucher_word(request, username_url, word_url):
     else:
         u = UserInfo.objects.get(user=c.user)
         return render(request, 'voucher.html', {'c': c, 'u': u, 'v' : v})
+
+def
 
 def voucher_claim(request):
     if request.method == 'POST':
@@ -131,8 +108,8 @@ def user_create(request):
             newform = form.save(commit=False)
             newform.user = request.user
             newform.save()
-    	    return HttpResponse('user info saved')
-        return render(request, 'user_create.html',{'form':form})
+            info = 'User info updated'
+        return render(request, 'user_create.html',{'form':form, 'info':info})
     else:
     	form = UserInfoForm()
     	item = UserInfo.objects.filter(user=request.user)

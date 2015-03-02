@@ -1,14 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+{% if info %}
+<div class="bg-info">{{ info }}</div>
+{% endif %}
+
 <h1>Account</h1>
 
 {% if newuser %}
 <h4>Now that you've signed up, let get started!</h4>
 {% endif %}
 
-<form method="post" action="{% url 'voucr.views.user_create' %}">
 
+<form method="post" action="{% url 'voucr.views.user_create' %}">
+{% csrf_token %}
 {% for f in form %}
 <div class="form-group">
         <label>{{ f.label_tag }} {{f.errors}}</label>{{ f }}
