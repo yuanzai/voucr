@@ -42,17 +42,17 @@ def login_page(request):
         #username = request.POST['username']
         #password = request.POST['password']
         #user = authenticate(username=username, password=password)
-        if form.clean():
-            if form.is_valid():
+        if form.is_valid():
+            if form.clean():
                 #username = request.POST['username']
                 #password = request.POST['password']
                 #user = authenticate(username=username, password=password)
                 login(request, form.get_user())
                 return HttpResponse("OK")
                 return HttpResponseRedirect(reverse('voucr.views.index'))
-            return HttpResponse("not valid")
+            return HttpResponse("not CLEAN")
         else:
-            return HttpResponse("not clean")
+            return HttpResponse("not VALID")
             #return render(request, 'login.html',{'form':form})
         """
         if user is not None:
