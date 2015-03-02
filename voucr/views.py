@@ -49,9 +49,9 @@ def login_page(request):
             	# Return a 'disabled account' error message
                 return HttpResponse('Account disabled, please contact us.')
         else:
-            # Return an 'invalid login' error message.
-
-            #return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+            form = AuthenticationForm(request.POST)
+            form.fields['username'].widget.attrs.update({'class':'form-control'})
+            form.fields['password'].widget.attrs.update({'class':'form-control'})
             return render(request, 'login.html',{'form':form})
     else:
         
