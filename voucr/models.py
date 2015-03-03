@@ -55,7 +55,15 @@ class Campaign(models.Model):
 		    ('Free','Free'),
 		    ('BuyNGet','Free With Purchase'),
 		    ('Disc','Discount'))
-	
+    distribution_choices = (
+    	               ('Public','Public - Anyone can enter email/mobile no.'),
+    	               ('User','User - Only a logged in user can enter an email/mobile no.'),
+    	               ('None','None - All voucher codes are populated without distribution'))
+    delivery_choices = (
+    	               ('Email','Email only'),
+    	               ('Mobile','Mobile only'),
+    	               ('Email & Mobile','Email and mobile'))
+    	               
     user = models.ForeignKey(User)
     desc_url = models.CharField(max_length=40)
     desc = models.CharField(max_length=255)
@@ -63,13 +71,19 @@ class Campaign(models.Model):
     offer_type = models.CharField(max_length=30,
 		                 choices=offer_choices,
 				 default='Free')
+    distribution = models.CharField(max_length=30,
+		                   choices=distribution_choices,
+				   default='None')
+    delivery = models.CharField(max_length=30,
+		               choices=delivery_choices,
+			       default='Email')
     count = models.PositiveIntegerField()
-    expire_date = models.DateField(null=True)
+    expire_datetime = models.DateTimeField(null=True)
 
 class CampaignForm(ModelForm):
     class Meta:
         model = Campaign
-        field = ['desc_url','desc', 'count','expire_date']
+        #field = ['desc_url','desc', 'count','expire_date']
         exclude = ('user',)        
 
 class Voucher(models.Model):
@@ -77,7 +91,8 @@ class Voucher(models.Model):
     char_url = models.CharField(max_length=20, db_index=True)
     word_url = models.CharField(max_length=20, db_index=True)
     date_url = models.CharField(max_length=7, db_index=True)
-    expire_date = models.DateField(null=True)
+    delivery_destination = models.CharField(max_length=255, null=True)
+    expire_datetime = models.DateTimeField(null=True)
     claim_datetime = models.DateTimeField(null=True)
     is_claimed = models.BooleanField(default=False)
 
