@@ -85,8 +85,14 @@ def get_voucher_word(request, username_url, word_url):
         u = UserInfo.objects.get(user=c.user)
         return render(request, 'voucher.html', {'c': c, 'u': u, 'v' : v})
 
-def
-
+def get_voucher_sample(request, campaign_id):
+    c = Campaign.objects.filter(id=campaign_id)
+    if c.count() != 1:
+    	raise Http404("Campaign does not exist")
+    else:
+    	u = UserInfo.objects.get(user=c.user)
+    	return render(request, 'voucher.html', {'c': c, 'u' : u, 'v' : v })
+    
 def voucher_claim(request):
     if request.method == 'POST':
         v = Voucher.objects.get(char_url=request.POST['char_url'])
@@ -100,8 +106,6 @@ def voucher_claim(request):
 
 @login_required
 def user_create(request):
-    #if not request.user.is_authenticated():
-        #return HttpResponseRedirect(reverse('voucr.views.index'))
     if request.method == 'POST':
         form = UserInfoForm(request.POST)
         if form.is_valid():
@@ -119,27 +123,23 @@ def user_create(request):
             newuser = False
         return render(request, 'user_create.html',{'form':form, 'newuser' : newuser})
 
+@login_required
 def campaign_home(request):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('voucr.views.index'))
     if not check_user_info(request.user):
 	    return HttpResponseRedirect(reverse('voucr.views.user_create'))
     c = Campaign.objects.filter(user=request.user)
     return render(request, 'campaign_home.html', {'c' : c })
 
+@login_required
 def campaign_view(request, campaign_id):
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('index'))
     if not check_user_info(request.user):
-	    return HttpResponseRedirect(reverse('voucr.views.user_create'))
+	return HttpResponseRedirect(reverse('voucr.views.user_create'))
     c = Campaign.objects.get(id=campaign_id)
     v = Voucher.objects.filter(campaign=c)
     return render(request, 'campaign_view.html', {'c': c, 'v' : v})
 
-
+@login_required
 def campaign_create(request): 
-    if not request.user.is_authenticated():
-        return HttpResponseRedirect(reverse('voucr.views.index'))
     if request.method == 'POST':
         form = CampaignForm(request.POST)
         if form.is_valid():
